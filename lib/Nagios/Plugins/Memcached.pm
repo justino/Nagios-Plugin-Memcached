@@ -16,11 +16,11 @@ Nagios::Plugins::Memcached - Nagios plugin to observe memcached.
 
 =head1 VERSION
 
-version 0.02
+version 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 SYNOPSIS
 
@@ -48,7 +48,7 @@ Please setup your nagios config.
   ### check cache hit ratio(get_hits/cmd_get[%]) for memcached
   define command {
     command_name    check_memcached_hit
-    command_line    /usr/bin/check_memcached -H $HOSTADDRESS$ --hit-warning 40 --size-critical 20
+    command_line    /usr/bin/check_memcached -H $HOSTADDRESS$ --hit-warning 40 --hit-critical 20
   }
 
 This plugin can execute with all threshold options together.
@@ -267,12 +267,12 @@ sub check_time {
         critical => $args->{critical}
     );
 
-    $self->add_message( $code, "Time checked: NG" ) if ( $code > OK );
+    $self->add_message( $code, "Time checked: " . sprintf( "%.4f", $stats->{time} * 1000 ) . 'ms') if ( $code > OK );
 
     $self->add_perfdata(
         label     => 'time',
         value     => sprintf( "%.4f", $stats->{time} * 1000 ),
-        uom       => '[msec]',
+        uom       => 'ms',
         threshold => $self->threshold
     );
 }
@@ -300,13 +300,13 @@ sub check_size {
             critical => $args->{critical}
         );
 
-        $self->add_message( $code, "Size checked: NG - at $host" )
+        $self->add_message( $code, "Size checked: " . sprintf( "%.2f", $use_size ) . "% - at $host" )
             if ( $code > OK );
 
         $self->add_perfdata(
             label     => 'size',
             value     => sprintf( "%.2f", $use_size ),
-            uom       => '[%]',
+            uom       => '%',
             threshold => $self->threshold
         );
     }
@@ -341,13 +341,13 @@ sub check_hit {
             critical => sprintf( '@0:%d', $args->{critical} )
         );
 
-        $self->add_message( $code, "Hit checked: NG - at $host" )
+        $self->add_message( $code, "Hit checked: " . sprintf( "%.2f", $hits ) . " hits - at $host" )
             if ( $code > OK );
 
         $self->add_perfdata(
             label     => 'hits',
             value     => sprintf( "%.2f", $hits ),
-            uom       => '[%]',
+            uom       => '%',
             threshold => $self->threshold
         );
     }
@@ -436,6 +436,10 @@ sub normalize_host {
 =head1 AUTHOR
 
 Toru Yamaguchi, C<< <zigorou@cpan.org> >>
+
+=head1 CONTRIBUTORS
+
+Justin La Sotten, C<< <justinl@cpan.org> >>
 
 =head1 BUGS
 

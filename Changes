@@ -1,5 +1,13 @@
 Revision history for Nagios-Plugins-Memcached
 
+0.03  2012-07-20 14:38
+  * Fixed for RT#47244 (https://rt.cpan.org/Public/Bug/Display.html?id=47244)
+  * Fixed for RT#54971 (https://rt.cpan.org/Public/Bug/Display.html?id=54971)
+  * Fixed for RT#43533 (https://rt.cpan.org/Public/Bug/Display.html?id=43533)
+  * Fixed for RT#56702 (https://rt.cpan.org/Public/Bug/Display.html?id=56702)
+  * Updated output so that nagios can show what the current value of a given
+    check is rather than displaying "NG"
+
 0.02  2007-12-11 17:04
   * Fixed for RT#31354 (http://rt.cpan.org//Ticket/Display.html?id=31354)
   * Fixed for RT#29894 (http://rt.cpan.org/Public/Bug/Display.html?id=29894)
