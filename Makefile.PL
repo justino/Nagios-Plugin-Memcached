@@ -1,8 +1,8 @@
 use inc::Module::Install;
 
-name('Nagios-Plugins-Memcached');
+name('Nagios-Plugin-Memcached');
 author('Toru Yamaguchi <zigorou@cpan.org>');
-version_from('lib/Nagios/Plugins/Memcached.pm');
+version_from('lib/Nagios/Plugin/Memcached.pm');
 abstract('Nagios plugin to observe memcached');
 license('perl');
 

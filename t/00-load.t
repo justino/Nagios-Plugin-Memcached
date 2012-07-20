@@ -1,7 +1,7 @@
 use Test::More tests => 1;
 
 BEGIN {
-    use_ok('Nagios::Plugins::Memcached');
+    use_ok('Nagios::Plugin::Memcached');
 }
 
-diag( "Testing Nagios::Plugins::Memcached $Nagios::Plugins::Memcached::VERSION" );
+diag( "Testing Nagios::Plugin::Memcached $Nagios::Plugin::Memcached::VERSION" );

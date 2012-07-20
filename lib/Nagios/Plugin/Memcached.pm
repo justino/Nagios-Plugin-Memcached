@@ -1,4 +1,4 @@
-package Nagios::Plugins::Memcached;
+package Nagios::Plugin::Memcached;
 
 use strict;
 use warnings;
@@ -16,11 +16,11 @@ Nagios::Plugins::Memcached - Nagios plugin to observe memcached.
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 
